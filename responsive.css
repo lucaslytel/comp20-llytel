@@ -1,0 +1,49 @@
+/* style sheet for lab 4 */ 
+
+
+
+@media (min-width: 1601px) { /* Top Left */
+
+.homer {
+	width: 294px; height: 294px;
+	background:url(homer.jpg) 0px 0px;
+}
+}
+
+@media (min-width:1401px) and (max-width: 1600px) { /* Top Right */
+
+.homer {
+	width: 294px; height: 294px;
+	background:url(homer.jpg) -312.5px 0px; 
+}
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) { /* Bottom Left */
+
+.homer {
+	width: 294px; height: 294px;
+	background:url(homer.jpg) 0px -312.5px;
+}
+}
+
+@media (min-width: 1001px) and (max-width: 1200px) { /* Bottom Right */
+
+.homer {
+	width: 294px; height: 294px;
+	background:url(homer.jpg) -312.5px -312.5px;
+}
+}
+
+@media (min-width: 801px) and (max-width: 1000px) {
+
+.homer {
+	width: 294px; height: 294px;
+	background:url(homer.jpg) 0px -312.5px;
+}
+}
+ 
+@media (min-width: 50px) and (max-width: 599px) {
+	.homer { width: 294px; height: 294px;
+	background:url(homer.jpg) 0px 0px; }
+}
+}
