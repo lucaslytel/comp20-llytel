@@ -1,0 +1,21 @@
+/* Style Sheet Lab 4 */
+
+#lyrics h1 {
+	font-style: italic;
+	font-size:1.5em;
+	text-align: center;
+}
+
+#lyrics h2 {
+	background-color: #00ff3f;
+	text-align: center;
+	font-style: italic;
+	padding: 4em;
+	border: dotted #000000;
+}
+
+#lyrics p {
+	font-style: italic;
+	text-align: center;
+	font-size: 1.5em;
+}
