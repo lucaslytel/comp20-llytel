@@ -7,8 +7,8 @@ var myOptions = {
 	center: me,
 };
 var marker;
-var infowindow = new google.maps.infowindow();
-function init() {
+// var infowindow = new google.maps.infowindow();
+function initMap() {
 	map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 	getMyLocation();
 }
