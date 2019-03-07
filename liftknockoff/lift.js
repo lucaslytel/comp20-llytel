@@ -60,7 +60,6 @@ var myOptions = {
 	}
 	function displaymarkers(userdata) { 
 		if (userdata.passengers) { 
-			console.log(userdata.passengers.length);
 			for (i = 0; i < userdata.passengers.length; i++) { 
 				if (userdata.passengers[i].username === 'WEINERMOBILE') {
 					var marker = new google.maps.Marker ({
@@ -69,8 +68,12 @@ var myOptions = {
 						icon: "weinermobile.png",
 					});
 					marker.setMap(map);
+					var mylocation = new google.maps.LatLng(myLat, myLng);
+					var weinerlocation = new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng);
+					var distance = Math.round(10 * google.maps.geometry.spherical.computeDistanceBetween(mylocation, weinerlocation) * 0.000621371) / 10;
+					var info = "<p> Username is: " + marker.title + "</p> <p> I am " + distance + " miles away";
 					google.maps.event.addListener(marker,'click', function() {
-						infowindow.setContent(this.title);
+						infowindow.setContent(info);
 						infowindow.open(map,this);
 					});
 				}
@@ -81,13 +84,13 @@ var myOptions = {
 						icon: "passenger.png"
 					});
 					marker.setMap(map);
-					//var name = userdata.passengers[i].username;
-					//var mylocation = new google.maps.LatLng(myLat, myLng);
-					//var userlocation = new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng);
-					//var distance = google.maps.spherical.computeDistanceBetween(new google.maps.LatLng(myLat, myLng), new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng));
-					//var info = "<p> Username is: " + name + "</p> <p> I am"
+					var name = userdata.passengers[i].username;
+					var mylocation = new google.maps.LatLng(myLat, myLng);
+					var userlocation = new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng);
+					var distance = Math.round(10 * google.maps.geometry.spherical.computeDistanceBetween(mylocation, userlocation) * 0.000621371) / 10;
+					var info = "<p> Username is: " + name + "</p> <p> I am " + distance + " miles away";
 					google.maps.event.addListener(marker,'click', function() {
-						infowindow.setContent(this.title);
+						infowindow.setContent(info);
 						infowindow.open(map,this);
 					});
 				}
@@ -101,20 +104,26 @@ var myOptions = {
 						icon: "weinermobile.png"
 					});
 					marker.setMap(map);
+					var mylocation = new google.maps.LatLng(myLat, myLng);
+					var userlocation = new google.maps.LatLng(userdata.vehicles[i].lat, userdata.vehicles[i].lng);
+					var distance = Math.round(10 * google.maps.geometry.spherical.computeDistanceBetween(mylocation, userlocation) * 0.000621371) / 10;
+					var info = "<p> Username is: " + marker.title + "</p> <p> I am " + distance + " miles away";
 					google.maps.event.addListener(marker,'click', function() {
-						infowindow.setContent(this.title);
+						infowindow.setContent(info);
 						infowindow.open(map,this);
 					});
 				}
 				else {
 					var marker = new google.maps.Marker ({
 						position: new google.maps.LatLng(userdata.vehicles[i].lat, userdata.vehicles[i].lng),
-						title: userdata.vehicles[i].id,
+						title: userdata.vehicles[i].username,
 						icon: "car.png"
 					});
 					marker.setMap(map);
-					// google.maps.geometry.spherical.computeDistanceBetween(myloc, userloc);
-					var info = "<p> Username is: " + name + "</p> <p> I am";
+					var mylocation = new google.maps.LatLng(myLat, myLng);
+					var userlocation = new google.maps.LatLng(userdata.vehicles[i].lat, userdata.vehicles[i].lng);
+					var distance = Math.round(10 * google.maps.geometry.spherical.computeDistanceBetween(mylocation, userlocation) * 0.000621371) / 10;
+					var info = "<p> Username is: " + marker.title + "</p> <p> I am " + distance + " miles away";
 					google.maps.event.addListener(marker,'click', function() {
 						infowindow.setContent(info);
 						infowindow.open(map,this);
