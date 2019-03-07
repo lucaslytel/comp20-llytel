@@ -52,29 +52,40 @@ var myOptions = {
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				userdata = JSON.parse(request.responseText);
-				console.log(userdata);
+				//console.log(userdata);
 				displaymarkers(userdata);		
 			}
 		}
 		request.send(data);
 	}
-	function displaymarkers(userdata) {
-		if (userdata.passangers) { 
-			for (i = 0; i < userdata.passangers.length, i++;) {
-				if (userdata.passangers[i].username === 'WEINERMOBILE') {
+	function displaymarkers(userdata) { 
+		console.log(userdata);
+		if (userdata.passengers) { 
+			for (i = 0; i < userdata.passengers.length; i++) { 
+				if (userdata.passengers[i].username === 'WEINERMOBILE') {
 					var marker = new google.maps.Marker ({
-						position: new google.maps.LatLng(userdata.passanger[i].lat, userdata.passanger[i].lng),
+						position: new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng),
 						title: "WEINERMOBILE",
 						icon: "weinermobile.png",
-						map: map
+					});
+					marker.setMap(map);
+					google.maps.event.addListener(marker,'click', function() {
+						infowindow.setContent(this.title);
+						infowindow.open(map,this);
 					});
 				}
-				var marker = new google.maps.Marker ({
-					position: new google.maps.LatLng(userdata.passanger[i].lat, userdata.passanger[i].lng),
-					title: userdata[i].passangers.id,
-					icon: "passanger.png",
-					map: map
-				});
+				else { 
+					var marker = new google.maps.Marker ({
+						position: new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng),
+						title: userdata[i].passengers.id,
+						icon: "passenger.png"
+					});
+					marker.setMap(map);
+					google.maps.event.addListener(marker,'click', function() {
+						infowindow.setContent(this.title);
+						infowindow.open(map,this);
+					});
+				}
 			}
 		} else if (userdata.vehicles) {
 			for (i = 0; i < userdata.vehicles.length; i++) {
@@ -97,7 +108,7 @@ var myOptions = {
 						icon: "car.png"
 					});
 					marker.setMap(map);
-					var name = userdata.vehicles[i].username;
+					/*var name = userdata.vehicles[i].username;
 					var userloc = [ userdata.vehicles[i].lat, userdata.vehicles[i].lng ];
 					var myloc = [ myLat, myLng ];
 					console.log(myloc);
@@ -106,7 +117,7 @@ var myOptions = {
 					google.maps.event.addListener(marker,'click', function() {
 						infowindow.setContent(info);
 						infowindow.open(map,this);
-					});
+					});*/
 				}
 			}
 		}
