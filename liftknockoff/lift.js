@@ -59,8 +59,8 @@ var myOptions = {
 		request.send(data);
 	}
 	function displaymarkers(userdata) { 
-		console.log(userdata);
 		if (userdata.passengers) { 
+			console.log(userdata.passengers.length);
 			for (i = 0; i < userdata.passengers.length; i++) { 
 				if (userdata.passengers[i].username === 'WEINERMOBILE') {
 					var marker = new google.maps.Marker ({
@@ -77,10 +77,15 @@ var myOptions = {
 				else { 
 					var marker = new google.maps.Marker ({
 						position: new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng),
-						title: userdata[i].passengers.id,
+						title: userdata.passengers[i].username,
 						icon: "passenger.png"
 					});
 					marker.setMap(map);
+					//var name = userdata.passengers[i].username;
+					//var mylocation = new google.maps.LatLng(myLat, myLng);
+					//var userlocation = new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng);
+					//var distance = google.maps.spherical.computeDistanceBetween(new google.maps.LatLng(myLat, myLng), new google.maps.LatLng(userdata.passengers[i].lat, userdata.passengers[i].lng));
+					//var info = "<p> Username is: " + name + "</p> <p> I am"
 					google.maps.event.addListener(marker,'click', function() {
 						infowindow.setContent(this.title);
 						infowindow.open(map,this);
@@ -108,16 +113,12 @@ var myOptions = {
 						icon: "car.png"
 					});
 					marker.setMap(map);
-					/*var name = userdata.vehicles[i].username;
-					var userloc = [ userdata.vehicles[i].lat, userdata.vehicles[i].lng ];
-					var myloc = [ myLat, myLng ];
-					console.log(myloc);
 					// google.maps.geometry.spherical.computeDistanceBetween(myloc, userloc);
 					var info = "<p> Username is: " + name + "</p> <p> I am";
 					google.maps.event.addListener(marker,'click', function() {
 						infowindow.setContent(info);
 						infowindow.open(map,this);
-					});*/
+					});
 				}
 			}
 		}
