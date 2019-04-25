@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Assigment 4</title>
+</head>
+<body>
+	<li> 1. Introduction - This product is a server for a mock lyft type application. It handels get and post requests and normally returns the locations of various riders. I am hired to find security issues in this product. </li> <p></p>
+	
+	<li> 2. Methodology - I used the OWASP Zed Attack Proxy Project to look for vulnerabilities partiularlly in the rhelm of cross site scripting and database injection. </li> <p></p>
+	
+	<li> 3. Abstract of Findings - I found that this application is susceptiable to many different types of severe security threats. Including database manipulation, meaning that a user can directly insert new collections into the database and also pull out unauthorized data about the drives. This is in an issue because the user can find sensitive information like the location of a passanger or their payment info that is associated with their account. Moreover, users can inject their own javascript or collections into this database which creates a problem of functionality. </li> <p></p>
+	
+	<li> 4. Issues Found - In the post rides and get passangers.json functions a user can do database injection which means that they are able to directly manipulate the vechiles or identities of the users. For example when the user injects JSON data for in the /passanger.json function here <p></p> <a href="https://ibb.co/s5QCMJx"><img src="https://i.ibb.co/n3fB58d/Screen-Shot-2019-04-25-at-1-57-04-PM.png" alt="Screen-Shot-2019-04-25-at-1-57-04-PM" border="0"></a>.  This is a threat because the user can input Mongo DB commands into their query string which has the potential to be harmful to the database. Another threat that I found was in a similar vein. There is no protection against spammers just adding more and more collections or documents into the database so that it runs really slowly. </li> <p></p>
+
+	<li> 5. Conclusion - I recommend hard coding the types of data that can be implemented in the /passangers.json function. Meaning that the user can only implement a lat/lng and usernamen and is unable to insert their own commands or javascript into their query string. This comes at relatively no cost and there is no reason it shouldn't be done. </li> <p></p>
+
+	<li> 6. References - I used the OWASP Zed Attack Proxy Project, POSTMAN, and my general knowledge to prefore these attacks. I also spoke with my partner David Ngetich so that we could exchange code and brainstorm ideas.</li> <p></p>
+
+</body>
+</html>
